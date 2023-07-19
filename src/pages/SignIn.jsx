@@ -53,7 +53,7 @@ import "react-toastify/dist/ReactToastify.css";
         {/* </div> */}
         <main className="grid grid-col justify-items-center ">
           <form action="" className="lg:w-7/12  font-[JejuMyeongjo]" onSubmit={handleSubmit((data) => console.log(data))}>
-            <h1 className="pb-5 text-3xl font-bold text-center">Welcome Back !</h1>
+            <h1 className="pb-5 text-3xl font-bold text-center">Admin Login !</h1>
             <section className="mb-4">
               <Input
                 variant="standard"
@@ -64,7 +64,7 @@ import "react-toastify/dist/ReactToastify.css";
                     message: "please enter valid email",
                   },
                 })}
-                color="green"
+                color="blue"
                 label="Email*"
               />
               {errors.email && (
@@ -87,7 +87,7 @@ import "react-toastify/dist/ReactToastify.css";
                     },
                   })}
                   variant="standard"
-                   color="green"
+                   color="blue"
                   label="Password*"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -113,7 +113,7 @@ import "react-toastify/dist/ReactToastify.css";
             </section>
             <br />
             <br />
-           <Link to="/atransaction"> <button  className="bg-[#81A356] text-white p-2 rounded-xl w-full">
+           <Link to="/adash"> <button  className="bg-[#2196f3] text-white p-2 rounded-xl w-full">
               Login
             </button></Link>
             <br />
@@ -139,7 +139,7 @@ import "react-toastify/dist/ReactToastify.css";
            
       <div className=" lg:w-full  lg:h-screen xl:w-full xl:h-screen   md:w-full  md:h-screen ">
         <img
-          src="./signinimg.png"
+          src="./adminlogin.avif"
           className="relative lg:w-full lg:h-screen xl:w-full xl:h-screen  w-0 md:w-full md:h-screen  "
           alt="myimg"
         />

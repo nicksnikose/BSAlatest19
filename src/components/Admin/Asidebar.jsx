@@ -11,7 +11,7 @@ const Asidebar = () => {
     { title: "Blog", src: "./adminsidebar/blog.png", to: "" },
     { title: "Feedback", src: "./adminsidebar/feedback.png", to: "" },
     { title: "Setting", src: "./adminsidebar/setting.png", to: "/asetting" },
-    { title: "Log out", src: "./adminsidebar/log out.png", to: "" },
+    { title: "Log out", src: "./adminsidebar/log out.png", to: "/" },
   ];
 
   return (

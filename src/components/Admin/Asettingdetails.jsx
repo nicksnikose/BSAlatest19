@@ -16,8 +16,8 @@ export default function Adetails() {
   <>
   <div className="   bg-[#F0ECEC] pt-6 ps-5 2xl:space-x-72 sm:space-x-4 space-x-4">
             
-             <Button className="capitalize font-semibold bg-[#c5c5c5] hover:bg-[#E4316F]  text-black    " >My Details</Button>
-             <Link to="/achangepass" className="" >     <Button  className="capitalize font-semibold bg-[#c5c5c5] hover:bg-[#E4316F]  text-black  ">Change Password</Button> </Link> 
+             <Button className="capitalize font-semibold  bg-[#1f2937] hover:bg-[#2196f3]  text-white    " >My Details</Button>
+             <Link to="/achangepass" className="" >     <Button  className="capitalize font-semibold  bg-[#1f2937] hover:bg-[#2196f3]  text-white  ">Change Password</Button> </Link> 
       
             </div>
     <div className="  bg-[#F0ECEC] w-full    p-3    ">

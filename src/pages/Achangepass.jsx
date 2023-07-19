@@ -57,11 +57,11 @@ import Mnavbar from "../components/Admin/mnavbar";
             <Link
               to={Menu.to}
               key={index}
-              className={`flex rounded-md p-2 cursor-pointer hover:bg-[#E4316F] focus:bg-[#388e3c] hover:text-white text-sm items-center gap-x-4 ${
+              className={`flex rounded-md p-2 cursor-pointer hover:bg-[#2196f3]  focus:bg-[#388e3c] hover:text-white text-sm items-center gap-x-4 ${
                 Menu.gap ? "mt-9" : "mt-2"
               } ${index === 0 && "bg-light-white"}`}
             >
-              <img src={Menu.src} className="w-6" alt="asset" />
+              <img src={Menu.src} className="w-6 " alt="asset" />
               <span
                 className={`${!open && "hidden"} origin-center text-[0px]  xl:text-lg  duration-200`}
               >
@@ -80,8 +80,8 @@ import Mnavbar from "../components/Admin/mnavbar";
       >
          <div className="   bg-[#F0ECEC] pt-6 ps-5 2xl:space-x-72 sm:space-x-4 space-x-4">
             
-            <Link to="/asettingmd" className="" >   <Button className="capitalize font-semibold bg-[#c5c5c5] hover:bg-[#E4316F]  text-black    " >My Details</Button></Link> 
-            <Button  className="capitalize font-semibold bg-[#c5c5c5] hover:bg-[#E4316F]  text-black  ">Change Password</Button> 
+            <Link to="/asettingmd" className="" >   <Button className="capitalize font-semibold bg-[#c5c5c5] hover:bg-[#2196f3]   text-black    " >My Details</Button></Link> 
+            <Button  className="capitalize font-semibold bg-[#c5c5c5] hover:bg-[#2196f3]   text-black  ">Change Password</Button> 
       
             </div>
       <div className="  bg-[#F0ECEC]  h-[78vmin]  pt-20    ">

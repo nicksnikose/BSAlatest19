@@ -50,7 +50,7 @@ const Amsettingmd = () => {
             <Link
               to={Menu.to}
               key={index}
-              className={`flex rounded-md p-2 cursor-pointer hover:bg-[#E4316F] focus:bg-[#388e3c] hover:text-white text-sm items-center gap-x-4 ${
+              className={`flex rounded-md p-2 cursor-pointer hover:bg-[#2196f3] focus:bg-[#388e3c] hover:text-white text-sm items-center gap-x-4 ${
                 Menu.gap ? "mt-9" : "mt-2"
               } ${index === 0 && "bg-light-white"}`}
             >
