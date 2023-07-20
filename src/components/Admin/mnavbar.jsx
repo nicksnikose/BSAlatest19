@@ -30,6 +30,7 @@ import {
 import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
+
 // profile menu component
 const profileMenuItems = [
   {
@@ -46,6 +47,7 @@ const profileMenuItems = [
     icon: PowerIcon,
   },
 ];
+
 
 function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -168,20 +170,13 @@ export default function Mnavbar() {
         </IconButton>
         <div className="flex gap-2 ">
           <Typography as="a" variant="small" className="font-normal">
-            <Link to="">
-              <IconButton className="flex items-center gap-2 py-2 -mt-1 pr-10 hover:bg-green-700 hover:text-white ">
-                <IoMdNotificationsOutline className="h-[18px] w-[18px]" />
-              </IconButton>
-            </Link>
+          <Link to="/arequest">
+  <IconButton className="flex items-center gap-2 py-2 -mt-1 pr-10 hover:bg-green-700 hover:text-white">
+    <IoMdNotificationsOutline className="h-[18px] w-[18px]" />
+  </IconButton>
+</Link>
           </Typography>
 
-          <Typography as="a" variant="small" className="font-normal">
-            <Link to="">
-              <IconButton className="flex items-center gap-2 py-2 -mt-1 pr-10 hover:bg-green-700 hover:text-white ">
-                <BsChatDots className="h-[18px] w-[18px]" />
-              </IconButton>
-            </Link>
-          </Typography>
           <ProfileMenu />
         </div>
       </div>

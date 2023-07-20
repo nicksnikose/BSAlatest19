@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Mnavbar from "../components/Admin/mnavbar";
-import Ablog from "../components/Admin/Ablog";
+import Aorder from "../components/Admin/Aorder";
+import Atransaction from "../components/Admin/Atransaction";
+import Request from "../components/Admin/Request";
 
-const Amblog = () => {
+const ARequest = () => {
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Dashboard", src: "./adminsidebar/dash.png", to: "/adash" },
@@ -13,9 +15,9 @@ const Amblog = () => {
     { title: "Blog", src: "./adminsidebar/blog.png", to: "/ablog" },
     {title: "Feedback", src: "./adminsidebar/feedback.png", to: "/afeedback",},
     { title: "Setting", src: "./adminsidebar/setting.png", to: "/asettingmd" },
+   
     { title: "Log out", src: "./adminsidebar/log out.png", to: "/" },
-
-  ];
+];
 
   return (
     <div className="2xl:container mx-auto">
@@ -50,7 +52,7 @@ const Amblog = () => {
             <Link
               to={Menu.to}
               key={index}
-              className={`flex rounded-md p-2 cursor-pointer hover:bg-[#2196f3]  focus:bg-[#388e3c] hover:text-white text-sm items-center gap-x-4 ${
+              className={`flex rounded-md p-2 cursor-pointer hover:bg-[#2196f3] focus:bg-[#388e3c] hover:text-white text-sm items-center gap-x-4 ${
                 Menu.gap ? "mt-9" : "mt-2"
               } ${index === 0 && "bg-light-white"}`}
             >
@@ -71,10 +73,10 @@ const Amblog = () => {
             : "pl-10 xl:pl-14 transition-all duration-200"
         }`}
       >
-        <Ablog />
+        <Request />
       </div>
     </div>
   );
 };
 
-export default Amblog;
+export default ARequest;

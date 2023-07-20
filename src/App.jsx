@@ -15,7 +15,9 @@ import Changepass from "./pages/Achangepass";
 import Amfeedback from "./pages/Amfeedback";
 import Ambooks from "./pages/Ambooks";
 import Amdashboard from "./pages/Amdashboard";
-
+import Mnavbar from "./components/Admin/mnavbar"
+import Request from "./components/Admin/Request"
+import ARequest from "./pages/ARequest";
 
 
 
@@ -28,7 +30,9 @@ const App = () => {
 <Routes>
   
   <Route path="/" element={<Signadi/>}/>
+  <Route path="/arequest" element={<ARequest/>}/>
  
+  <Route path="/mnavbar" element={<Mnavbar/>}/>
   <Route path="/atransaction" element={<Amtransaction/>}/>
   <Route path="/aorder" element={<Amorder/>}/>
   <Route path="/asettingmd" element={<Amsettingmd/>}/>

@@ -14,7 +14,7 @@ const Amsettingmd = () => {
     { title: "Blog", src: "./adminsidebar/blog.png", to: "/ablog" },
     {title: "Feedback", src: "./adminsidebar/feedback.png", to: "/afeedback",},
     { title: "Setting", src: "./adminsidebar/setting.png", to: "/asettingmd" },
-    // { title: "Log out", src: "./adminsidebar/log out.png", to: "/amlogout" },
+    { title: "Log out", src: "./adminsidebar/log out.png", to: "/" },
   ];
 
   return (
