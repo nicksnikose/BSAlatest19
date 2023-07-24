@@ -82,9 +82,6 @@ export default function Asettingdetails(props) {
         }
       );
   
-      // Rest of the code remains the same
-      // ...
-  
     } catch (error) {
       console.log('An error occurred while uploading the data');
     }
