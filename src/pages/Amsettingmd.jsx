@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Mnavbar from "../components/Admin/mnavbar";
 
 import Adetails from "../components/Admin/Asettingdetails";
+import Asettingdetails from "../components/Admin/Asettingdetails";
 
 const Amsettingmd = () => {
   const [open, setOpen] = useState(true);
@@ -71,7 +72,7 @@ const Amsettingmd = () => {
             : "pl-10 xl:pl-14 transition-all duration-200"
         }`}
       >
-        <Adetails />
+        <Asettingdetails />
       </div>
     </div>
   );

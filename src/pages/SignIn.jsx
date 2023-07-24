@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "@material-tailwind/react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { FaTwitter } from "react-icons/fa";
 import {eyeOff} from "react-icons-kit/feather/eyeOff"
 import {eye} from "react-icons-kit/feather/eye"
@@ -11,11 +11,13 @@ import { useState } from "react";
 import Icon from "react-icons-kit";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-
+import { useDispatch } from "react-redux";
+import { checkUserAsync } from "../features/auth/authSlice";
 
 
  export default function Signadi () {
-
+const navigate = useNavigate()
+  const dispatch = useDispatch()
   const[password,setPassword]=useState("")
   const [type,setType]=useState("password")
   const[icon,setIcon]=useState(eyeOff)
@@ -52,7 +54,10 @@ import "react-toastify/dist/ReactToastify.css";
                          </Link>
         {/* </div> */}
         <main className="grid grid-col justify-items-center ">
-          <form action="" className="lg:w-7/12  font-[JejuMyeongjo]" onSubmit={handleSubmit((data) => console.log(data))}>
+          <form action="" className="lg:w-7/12  font-[JejuMyeongjo]" onSubmit={handleSubmit((data) => { dispatch(checkUserAsync({email: data.email , password: data.password}))
+        console.log(data)
+        navigate("/adash")
+        })}>
             <h1 className="pb-5 text-3xl font-bold text-center">Admin Login !</h1>
             <section className="mb-4">
               <Input
@@ -113,9 +118,9 @@ import "react-toastify/dist/ReactToastify.css";
             </section>
             <br />
             <br />
-           <Link to="/adash"> <button  className="bg-[#2196f3] text-white p-2 rounded-xl w-full">
+          <button  className="bg-[#2196f3] text-white p-2 rounded-xl w-full">
               Login
-            </button></Link>
+            </button>
             <br />
             <br />
             <button type="button" disabled className="flex items-center justify-center  text-black p-2 border border-spacing-3 border-black  rounded-xl w-full " >

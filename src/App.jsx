@@ -4,9 +4,6 @@ import { Route,Routes } from "react-router-dom"
 import Signadi from "./pages/SignIn"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
-
 import Amtransaction from "./pages/Amtransaction"
 import Amorder from "./pages/Amorder"
 import Amblog from "./pages/Amblog";
@@ -31,7 +28,6 @@ const App = () => {
   
   <Route path="/" element={<Signadi/>}/>
   <Route path="/arequest" element={<ARequest/>}/>
- 
   <Route path="/mnavbar" element={<Mnavbar/>}/>
   <Route path="/atransaction" element={<Amtransaction/>}/>
   <Route path="/aorder" element={<Amorder/>}/>
