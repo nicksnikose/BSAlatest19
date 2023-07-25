@@ -61,7 +61,7 @@ import {
         
   
         {/* card row 1 */}
-        <div className="bg-[#DDDDDD] mt-3 p-5"> 
+        <div className="bg-[#DDDDDD] mt-4 p-5"> 
           <strong className=" text-[22px]  text-[#1f2937] ">Waiting  for updates</strong>
   
           <div className="  grid lg:grid-cols-4 md:grid-cols-2 mt-3 sm:grid-cols-1 ">
@@ -69,7 +69,7 @@ import {
        {
   filter.map((item)=>(
       <form >
-    <Card className="w-64 bg-[#FFFFFF] item-center  mx-auto mb-5" key={item._id}>
+    <Card className="w-[95%] bg-[#FFFFFF] item-center   mb-5" key={item._id}>
     <CardHeader shadow={false} floated={false}>
       <center>
         <img src={`./books/${item.img}`} className="w-[120px] h-[188px] " alt="img" />
@@ -93,7 +93,7 @@ import {
       <button
         ripple={false}
         fullWidth={true}
-        className="bg-[#08A459] p-2 rounded-lg text-white hover:shadow-none  "
+        className="bg-[red] p-2 rounded-lg text-white hover:shadow-none  "
       >
         <center>
         Cancel
@@ -101,22 +101,54 @@ import {
       </button>
   
       <button
-        ripple={false}
-        fullWidth={true}
-        onClick={async(e)=>{
-          e.preventDefault();
-          const response = await axios.put(`http://localhost:5000/products/${item._id}/bargain`,{
-            price
-        })
-         
-          console.log(response)
-        }}
-        className="bg-[red] p-2 rounded-lg text-white hover:shadow-none  "
-        >
-        <center>
-           Send
-        </center>
-      </button>
+  ripple={false}
+  fullWidth={true}
+  className="bg-[#08A459] p-2 rounded-lg text-white hover:shadow-none"
+  onClick={async (e) => {
+    e.preventDefault();
+    
+    try {
+      const userData = await fetch(`http://localhost:5000/users/${item.created}/`)
+      console.log(userData)
+      if (!userData.ok) {
+        throw new Error("Network response was not ok");
+      }
+    
+      const JSONData = await userData.json();
+      console.log(JSONData.profile.email); // This will log the email from the fetched user data.
+
+      
+      // Send OTP to the user's email using the API endpoint
+      const response = await fetch("http://localhost:5000/sendotp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: JSONData.profile.email, // Replace `user.email` with the correct value containing the recipient's email
+        }),
+      });
+
+      if (response.ok) {
+        console.log("OTP sent successfully!");
+        
+        // Now, after sending the OTP, you can proceed with the other API call (axios.put) to update the product price.
+        // Note that you can add more logic here if needed before sending the OTP or after the OTP is sent successfully.
+        const putResponse = await axios.put(`http://localhost:5000/products/${item._id}/bargain`, {
+          price
+        });
+
+        console.log(putResponse);
+      } else {
+        console.error("Failed to send the OTP.");
+      }
+    } catch (error) {
+      console.error("Error fetching user data or sending the OTP:", error);
+    }
+  }}
+>
+  <center>Send and Update</center>
+</button>
     </CardFooter>
   </Card>
        </form>
