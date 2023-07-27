@@ -111,7 +111,7 @@ const navigate = useNavigate()
                 <input type="checkbox" className="me-1" /> 
                 Remember me
               </div>
-              <Link>
+              <Link to='forgotpassword'>
               <div className="md:text-[16px] text-[13px] ">Forgot Password ?</div>
 
               </Link>

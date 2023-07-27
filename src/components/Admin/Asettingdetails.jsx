@@ -21,6 +21,7 @@ export default function Asettingdetails(props) {
   const users = useSelector(selectLoggedInUser);
   const [user, setUser] = useState({});
   const dat = users.data.user;
+  console.log(dat)
 
   // Update the 'data' state once the 'users' state is available
   useEffect(() => {
@@ -123,7 +124,7 @@ export default function Asettingdetails(props) {
               type="file"
               onChange={handleFileChange}
             />
-            {userImg !== "default.jpg" ? (
+            {data.img !== "default.jpg" ? (
               <img
                 src={`./adminProfile/${data.img}`}
                 alt="sdf"

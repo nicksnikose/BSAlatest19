@@ -36,63 +36,63 @@ import { useNavigate } from "react-router-dom";
   
     const navigate = useNavigate()
   
-    const otpSend = () => {
+    // const otpSend = () => {
   
-      if (!isSending) {
-        setIsSending(true);
+    //   if (!isSending) {
+    //     setIsSending(true);
   
-        axios
-          .post("http://localhost:5000/sendotp", {
-            email: email,
-          })
-          .then((response) => {
-            if (response.data.message === "OTP sent") {
-              toast.success("OTP sent successfully");
-              setWrite(false)
-              setIsSending(false);
-              setHasSentOnce(true);
-              // Handle success case (e.g., display success message)
-            } else {
-              // Handle user not found case (e.g., display error message)
-            }
-            setIsSending(false);
-          })
-          .catch((error) => {
-            toast.error("User not found");
-            console.log("An error occurred while sending the OTP:", error);
-            // Handle error case (e.g., display error message)
-            setIsSending(false);
-          });
-      }
+    //     axios
+    //       .post("http://localhost:5000/send", {
+    //         email: email,
+    //       })
+    //       .then((response) => {
+    //         if (response.data.message === "OTP sent") {
+    //           toast.success("OTP sent successfully");
+    //           setWrite(false)
+    //           setIsSending(false);
+    //           setHasSentOnce(true);
+    //           // Handle success case (e.g., display success message)
+    //         } else {
+    //           // Handle user not found case (e.g., display error message)
+    //         }
+    //         setIsSending(false);
+    //       })
+    //       .catch((error) => {
+    //         toast.error("User not found");
+    //         console.log("An error occurred while sending the OTP:", error);
+    //         // Handle error case (e.g., display error message)
+    //         setIsSending(false);
+    //       });
+    //   }
   
-    }
+    // }
   
-    const handlePassChange = (e) => {
-      setIsLoading(true);
+    // const handlePassChange = (e) => {
+    //   setIsLoading(true);
   
-      axios
-        .post("http://localhost:5000/submitotp", {
-          otp: otp,
-          password: password,
-        })
-        .then((response) => {
-          if (response.data.code === 200) {
-            toast.success("Password updated successfully");
-            navigate("/login")
-            // Handle success case (e.g., display success message)
-          } else {
-            toast.error("Invalid OTP");
-            // Handle invalid OTP case (e.g., display error message)
-          }
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          console.log("An error occurred while submitting OTP:", error);
-          setError("An error occurred while submitting OTP");
-          // Handle error case (e.g., display error message)
-          setIsLoading(false);
-        });
-    }
+    //   axios
+    //     .post("http://localhost:5000/submitotp", {
+    //       otp: otp,
+    //       password: password,
+    //     })
+    //     .then((response) => {
+    //       if (response.data.code === 200) {
+    //         toast.success("Password updated successfully");
+    //         navigate("/")
+    //         // Handle success case (e.g., display success message)
+    //       } else {
+    //         toast.error("Invalid OTP");
+    //         // Handle invalid OTP case (e.g., display error message)
+    //       }
+    //       setIsLoading(false);
+    //     })
+    //     .catch((error) => {
+    //       console.log("An error occurred while submitting OTP:", error);
+    //       setError("An error occurred while submitting OTP");
+    //       // Handle error case (e.g., display error message)
+    //       setIsLoading(false);
+    //     });
+    // }
   
   
 
@@ -171,7 +171,35 @@ import { useNavigate } from "react-router-dom";
           <Input size="" label="Email" className="border border-1 "  value={email}
                           onChange={(e) => setEmail(e.target.value)}/>
           <Link
-                          onClick={otpSend}
+                          onClick={()=>{
+                            if (!isSending) {
+                              setIsSending(true);
+                        
+                              axios
+                                .post("http://localhost:5000/send", {
+                                  email: email,
+                                })
+                                .then((response) => {
+                                  if (response.data.message === "OTP sent") {
+                                    toast.success("OTP sent successfully");
+                                    setWrite(false)
+                                    setIsSending(false);
+                                    setHasSentOnce(true);
+                                    // Handle success case (e.g., display success message)
+                                  } else {
+                                    // Handle user not found case (e.g., display error message)
+                                  }
+                                  setIsSending(false);
+                                })
+                                .catch((error) => {
+                                  toast.error("User not found");
+                                  console.log("An error occurred while sending the OTP:", error);
+                                  // Handle error case (e.g., display error message)
+                                  setIsSending(false);
+                                });
+                            }
+                        
+                          }}
 
                           className={`inline-block rounded border-2 ${isSending ? "opacity-50 cursor-not-allowed" : "border-danger"
                             } px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10`}  >
@@ -192,7 +220,32 @@ import { useNavigate } from "react-router-dom";
                         onChange={(e) => setPassword(e.target.value)}
                          />
         
-        <div className="flex justify-around  "><Link to="/"><Button className="mt-6  bg-[#2196f3]"  onClick={handlePassChange}>
+        <div className="flex justify-around  "><Link to="/"><Button className="mt-6  bg-[#2196f3]"  onClick={(e) => {
+      setIsLoading(true);
+  
+      axios
+        .post("http://localhost:5000/submitotp", {
+          otp: otp,
+          password: password,
+        })
+        .then((response) => {
+          if (response.data.code === 200) {
+            toast.success("Password updated successfully");
+            navigate("/")
+            // Handle success case (e.g., display success message)
+          } else {
+            toast.error("Invalid OTP");
+            // Handle invalid OTP case (e.g., display error message)
+          }
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log("An error occurred while submitting OTP:", error);
+          setError("An error occurred while submitting OTP");
+          // Handle error case (e.g., display error message)
+          setIsLoading(false);
+        });
+    }}>
           Submit
         </Button></Link>
         

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsChatDots, BsSearch } from "react-icons/bs";
 import {
   Navbar,
@@ -29,7 +29,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
-
+import { selectLoggedInUser } from "../../features/auth/authSlice";
+import { useSelector } from "react-redux";
+import axios from "axios"; 
 
 // profile menu component
 const profileMenuItems = [
@@ -49,9 +51,70 @@ const profileMenuItems = [
 ];
 
 
-function ProfileMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+
+
+function ProfileMenu({ userImg }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    img: null,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (event) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      img: event.target.files[0],
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const user = JSON.parse(sessionStorage.getItem("data"));
+      if (!user) {
+        console.log("User data not found");
+        return;
+      }
+
+      const formDataToSend = new FormData();
+      formDataToSend.append("firstName", formData.firstName);
+      formDataToSend.append("lastName", formData.lastName);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("phone", formData.phone);
+      if (formData.img) {
+        formDataToSend.append("img", formData.img);
+      }
+
+      const response = await axios.put(
+        `http://localhost:5000/admin/${user._id}`,
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Data updated successfully:", response.data);
+    } catch (error) {
+      console.log("An error occurred while updating the data:", error);
+    }
+  };
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -61,53 +124,25 @@ function ProfileMenu() {
           color="blue-gray"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
-          <Avatar
-            variant="circular"
-            size="sm"
-            alt="tania andrew"
-            className="border border-blue-500 p-0.5"
-            src="./adminsidebar/RS.jpg"
-          />
-          <ChevronDownIcon
-            strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${
-              isMenuOpen ? "rotate-180" : ""
-            }`}
-          />
+          {userImg !== "default.jpg" ? (
+            <Avatar
+              variant="circular"
+              size="sm"
+              alt="Admin Profile"
+              className="border border-blue-500 p-0.5"
+              src={`./adminProfile/${userImg}`}
+            />
+          ) : (
+            <h1></h1>
+          )}
         </Button>
       </MenuHandler>
-      {/* <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
-          return (
-            <MenuItem
-              key={label}
-              onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
-              }`}
-            >
-              {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
-              })}
-              <Typography
-                as="span"
-                variant="small"
-                className="font-normal"
-                color={isLastItem ? "red" : "inherit"}
-              >
-                {label}
-              </Typography>
-            </MenuItem>
-          );
-        })}
-      </MenuList> */}
+     
     </Menu>
   );
 }
+  
+
 
 function NavList() {
   return (
@@ -136,12 +171,7 @@ export default function Mnavbar() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
-  React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setIsNavOpen(false)
-    );
-  }, []);
+  const loggedInUser = useSelector(selectLoggedInUser)
 
   return (
     <Navbar className="  p-2 top-0 left-0 right-0 max-w-full  sticky-top ">
@@ -177,7 +207,7 @@ export default function Mnavbar() {
 </Link>
           </Typography>
 
-          <ProfileMenu />
+          <ProfileMenu  userImg={loggedInUser?.data?.user?.img}/>
         </div>
       </div>
 
@@ -190,3 +220,10 @@ export default function Mnavbar() {
     </Navbar>
   );
 }
+
+
+
+
+
+
+

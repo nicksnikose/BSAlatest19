@@ -15,10 +15,7 @@ import Amdashboard from "./pages/Amdashboard";
 import Mnavbar from "./components/Admin/mnavbar"
 import Request from "./components/Admin/Request"
 import ARequest from "./pages/ARequest";
-
-
-
-
+import Forgotpass from "./pages/Forgotpass"
 const App = () => {
   return (
     <div>
@@ -37,6 +34,7 @@ const App = () => {
   <Route path="/afeedback" element={<Amfeedback/>}/>
   <Route path="/abooks" element={<Ambooks/>}/>
   <Route path="/adash" element={<Amdashboard/>}/>
+  <Route path="/forgotpassword" element={<Forgotpass/>}/>
 
   
 
