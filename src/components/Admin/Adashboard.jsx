@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 
  
 function Adashboard() {
-  const [dataSource, setDataSource] = useState([]);
-    const [dataSource1, setDataSource1] = useState(null);
-
+  const [datasore, setDatasore] = useState([]);
+    const [datasore1, setDatasore1] = useState(null);
+    const [datasource , setDataSource]= useState([])
 
     useEffect(() => {
         const getData = async () => {
@@ -23,34 +23,35 @@ function Adashboard() {
       
         getData();
       }, []);
-    console.log(dataSource)
+    
+ console.log(datasource);
 
-    const chartData = dataSource.map((dataPoint) => {
+    const chartData = datasource.map((dataPoint) => {
       return dataPoint.BuyBook + dataPoint.SellBook + dataPoint.DonateBook
      });
       console.log(chartData)
     
         //1 Book
-      const totalBooksOfYear = dataSource.reduce(
+      const totalBooksOfYear = datasource.reduce(
         (total, dataPoint) => total + (dataPoint.BuyBook + dataPoint.SellBook + dataPoint.DonateBook),
         0
       );
       console.log(totalBooksOfYear)
             //2 Order
-      const totalSellBooksOfYear = dataSource.reduce(
+      const totalSellBooksOfYear = datasource.reduce(
         (total, dataPoint) => total + dataPoint.SellBook,
         0
       );
 
       //3 Books Donate
-      const totalDonateBooksOfYear = dataSource.reduce(
+      const totalDonateBooksOfYear = datasource.reduce(
         (total, dataPoint) => total + dataPoint.DonateBook,
         0
       );
 
       //4 Donators
       
-      const totalBuyBooksOfYear = dataSource.reduce(
+      const totalBuyBooksOfYear = datasource.reduce(
         (total, dataPoint) => total + dataPoint.BuyBook,
         0
       );

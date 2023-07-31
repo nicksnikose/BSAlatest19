@@ -13,17 +13,10 @@ const Dashboard = () => {
         const res = await fetch("http://localhost:5000/getdata");
         const result = await res.json();
         setDataSource(result);
-
-        // Get the length of data with LoginTime
-        const dataWithLoginTime = result.filter(item => item.LoginTime);
-        const lengthOfDataWithLoginTime = dataWithLoginTime.length;
-        setDataSource1(lengthOfDataWithLoginTime);
-
       } catch (error) {
         console.log('Error fetching data:', error);
       }
     };
-
     getData();
   }, []);
 
@@ -42,7 +35,7 @@ const Dashboard = () => {
   });
 
   // Select the month for which you want to display data
-  const targetMonth = "Jun"; // Replace "July" with the desired month
+  const targetMonth = "Jul"; // Replace "July" with the desired month
 
   // Find the data for the selected month
   const targetMonthData = chartData.find(dataPoint => dataPoint.Month === targetMonth);

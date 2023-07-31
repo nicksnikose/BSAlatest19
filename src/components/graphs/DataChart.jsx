@@ -31,7 +31,7 @@ function DataChart() {
           <BarChart chartData={userData} />
         </div>
          <br /><br />
-        <div  className="bg-[white] rounded-lg lg:w-[120vmin] lg:h-[60vmin] xl:w-[120vmin] xl:h-[60vmin] md:w-[60vmin] md:h-[30vmin] sm:w-[35vmin] sm:h-[30vmin]  ">
+        <div className="bg-[white] rounded-lg lg:w-[120vmin] lg:h-[60vmin] xl:w-[120vmin] xl:h-[60vmin] md:w-[60vmin] md:h-[30vmin] sm:w-[35vmin] sm:h-[30vmin]  ">
           <PieChart chartData={userData} />
         </div>
     

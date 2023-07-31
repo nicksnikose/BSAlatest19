@@ -16,6 +16,7 @@ import Mnavbar from "./components/Admin/mnavbar"
 import Request from "./components/Admin/Request"
 import ARequest from "./pages/ARequest";
 import Forgotpass from "./pages/Forgotpass"
+import DRequest from "./pages/DRequest";
 const App = () => {
   return (
     <div>
@@ -35,6 +36,7 @@ const App = () => {
   <Route path="/abooks" element={<Ambooks/>}/>
   <Route path="/adash" element={<Amdashboard/>}/>
   <Route path="/forgotpassword" element={<Forgotpass/>}/>
+  <Route path="/drequest" element={ <DRequest />}/>
 
   
 

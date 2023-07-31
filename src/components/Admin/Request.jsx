@@ -50,7 +50,7 @@ import {
   
   
     const  filter = products.filter((item)=>{
-      return item.status === "Pending"
+      return item.status === "Pending" 
     })
     console.log(filter)
   

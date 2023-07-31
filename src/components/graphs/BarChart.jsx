@@ -16,12 +16,6 @@ const Dashboard = () => {
         const res = await fetch("http://localhost:5000/getdata");
         const result = await res.json();
         setDataSource(result);
-  
-        // Get the length of data with LoginTime
-        const dataWithLoginTime = result.filter(item => item.LoginTime);
-        const lengthOfDataWithLoginTime = dataWithLoginTime.length;
-        setDataSource1(lengthOfDataWithLoginTime)
-     
       } catch (error) {
         console.log('Error fetching data:', error);
       }

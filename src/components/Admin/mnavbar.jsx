@@ -31,7 +31,7 @@ import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { selectLoggedInUser } from "../../features/auth/authSlice";
 import { useSelector } from "react-redux";
-import axios from "axios"; 
+import axios from "axios";
 
 // profile menu component
 const profileMenuItems = [
@@ -49,10 +49,6 @@ const profileMenuItems = [
     icon: PowerIcon,
   },
 ];
-
-
-
-
 
 function ProfileMenu({ userImg }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -137,12 +133,9 @@ function ProfileMenu({ userImg }) {
           )}
         </Button>
       </MenuHandler>
-     
     </Menu>
   );
 }
-  
-
 
 function NavList() {
   return (
@@ -170,17 +163,35 @@ function NavList() {
 export default function Mnavbar() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
+  const[products,setProducts]=useState([])
 
-  const loggedInUser = useSelector(selectLoggedInUser)
+
+  const loggedInUser = useSelector(selectLoggedInUser);
+
+  useEffect(()=>{
+  
+    const getproduct = async ()=>{
+      const product = await fetch(`http://localhost:5000/products/`)
+      const data = await product.json()
+      console.log(data)
+      setProducts(data)
+    }
+    getproduct()
+    
+      },[]);
+      
+  const  filter = products.filter((item)=>{
+    return item.status === "Pending" && item.status !== "accept" && item.type !== "donate"
+  })
+  const  filter2 = products.filter((item)=>{
+    return item.type === "donate"  && item.status !== "accept"
+  })
+  console.log(filter)
 
   return (
     <Navbar className="  p-2 top-0 left-0 right-0 max-w-full  sticky-top ">
       <div className="relative justify-between  flex items-center text-blue-gray-900">
-        <Typography
-          as="a"
-          href="#"
-          className=" ml-6  py-1.5 font-medium"
-        >
+        <Typography as="a" href="#" className=" ml-6  py-1.5 font-medium">
           <Link to="/">
             <img src="./images/logo.jpeg" className="h-12" alt="LOGO" />
           </Link>
@@ -198,32 +209,32 @@ export default function Mnavbar() {
         >
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
+
         <div className="flex gap-2 ">
           <Typography as="a" variant="small" className="font-normal">
-          <Link to="/arequest">
-  <IconButton className="flex items-center gap-2 py-2 -mt-1 pr-10 hover:bg-green-700 hover:text-white">
-    <IoMdNotificationsOutline className="h-[18px] w-[18px]" />
-  </IconButton>
-</Link>
+            <Link to="/arequest">
+              <IconButton className="flex items-center gap-2 py-2 -mt-1 pr-10 hover:bg-green-700 hover:text-white">
+                S <sup>{filter.length}</sup>
+              </IconButton>
+            </Link>
           </Typography>
 
-          <ProfileMenu  userImg={loggedInUser?.data?.user?.img}/>
+          <Typography as="a" variant="small" className="font-normal">
+            <Link to="/drequest">
+              <IconButton className="flex items-center gap-2 py-2 -mt-1 pr-10 hover:bg-green-700 hover:text-white">
+                D <sup>{filter2.length}</sup>
+              </IconButton>
+            </Link>
+          </Typography>
+
+          <ProfileMenu userImg={loggedInUser?.data?.user?.img} />
         </div>
       </div>
 
       {/* overflow-scroll       */}
       <MobileNav open={isNavOpen} className="">
-       
-
         <NavList />
       </MobileNav>
     </Navbar>
   );
 }
-
-
-
-
-
-
-
